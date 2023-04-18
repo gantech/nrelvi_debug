@@ -19,7 +19,7 @@ AMR-Wind commit:
 
 - In the main branch, the production term is unlimited. However, this is 
   inconsistent with the SDR equation in Nalu-Wind where the production 
-  term is unlimited. 
+  term is limited. 
 
 
 Commit hashes:
