@@ -24,27 +24,27 @@ time.checkpoint_interval      =  1440       # Steps between checkpoint files
 incflo.initial_iterations = 3
 
 #--------------------------------------#
-##          POST PROCESSING             # 
+##          POST PROCESSING             #
 ##--------------------------------------#
 incflo.post_processing = sampling_plane sampling_line
 
 # ---- On a plane ----
 # --------------------
 # Frequency of output for the data
-sampling_plane.output_frequency = 1 
+sampling_plane.output_frequency = 1
 
-# Type of probes to output 
+# Type of probes to output
 sampling_plane.labels = p_yz #YZ planes at different streamwise locations
 
 # # Fields to output
 sampling_plane.fields = velocity tke
 
 sampling_plane.p_yz.type = PlaneSampler
-sampling_plane.p_yz.axis1 = 0.0 35.0 0.0 
+sampling_plane.p_yz.axis1 = 0.0 35.0 0.0
 sampling_plane.p_yz.axis2 = 0.0 0.0 35.0
 sampling_plane.p_yz.origin = 0.0 -17.5 -17.5
 sampling_plane.p_yz.num_points = 88 88
-sampling_plane.p_yz.normal = 1.0 0.0 0.0 
+sampling_plane.p_yz.normal = 1.0 0.0 0.0
 sampling_plane.p_yz.offsets = 10.0 20.0 30.0 50.0 70.0 100.0 140.0
 
 # --- On a line ---
@@ -75,6 +75,8 @@ transport.turbulent_prandtl = 0.3333
 turbulence.model = KOmegaSST
 TKE.source_terms = KwSSTSrc
 SDR.source_terms = SDRSrc
+KOmegaSST_coeffs.tke_amb = 0.000225
+KOmegaSST_coeffs.sdr_amb = 150.0
 
 incflo.physics = FreeStream
 
@@ -82,7 +84,7 @@ FreeStream.velocity_type = ConstValue
 ConstValue.velocity.value = 15.0 0.0 0.0
 
 FreeStream.tke_type = ConstValue
-ConstValue.tke.value = 1.05
+ConstValue.tke.value = 0.000225
 FreeStream.sdr_type = ConstValue
 ConstValue.sdr.value = 150.0
 
@@ -115,7 +117,7 @@ geometry.is_periodic    =   0   0   0   # Periodicity x y z (0/1)
 xlo.type = "mass_inflow"
 xlo.density = 1.246
 xlo.velocity = 15.0 0.0 0.0
-xlo.tke = 1.05
+xlo.tke = 0.000225
 xlo.sdr = 150.0
 xhi.type = "pressure_outflow"
 ylo.type = "slip_wall"
@@ -146,11 +148,11 @@ mac_proj.verbose=0
 mac_proj.max_coarsening_level = 0
 mac_proj.do_nsolve = true
 mac_proj.bottom_verbose  = 0
-mac_proj.bottom_solver = hypre
 mac_proj.mg_rtol = 1.0e-6
 mac_proj.mg_atol = 1.0e-10
 mac_proj.bottom_rtol = 1.0e-11
 mac_proj.bottom_atol = 1.0e-12
+
 ##
 diffusion.verbose=0
 diffusion.do_agglomeration = false
@@ -159,3 +161,4 @@ diffusion.do_nsolve = true
 velocity_diffusion.verbose=0
 velocity_diffusion.use_tensor_operator = false
 velocity_diffusion.use_segregated_operator = true
+##
