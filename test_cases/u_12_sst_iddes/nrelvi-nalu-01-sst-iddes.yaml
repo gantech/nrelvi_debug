@@ -135,7 +135,7 @@ linear_solvers:
 realms:
 
 - name: realm_1
-  mesh: /scratch/sbidadi/nrel_vi/correct_mesh/nrelvi_nearbody_mesh.exo
+  mesh: /projects/exawind/mhenryde/nrelvi_debug/mesh/nrelvi_nearbody_mesh.exo
   use_edges: yes
 
   equation_systems:
@@ -173,9 +173,9 @@ realms:
     - nearbody-HEX
     value:
       pressure: 0
-      velocity: [7.0, 0.0, 0.0]
-      turbulent_ke: 0.000049
-      specific_dissipation_rate: 70.0
+      velocity: [12.0, 0.0, 0.0]
+      turbulent_ke: 0.000144
+      specific_dissipation_rate: 120.0
 
   material_properties:
     target_name:
@@ -244,7 +244,8 @@ realms:
 
   solution_options:
     name: myOptions
-    turbulence_model: sst
+    turbulence_model: sst_iddes
+    strelets_upwinding: no
     projected_timescale_type: momentum_diag_inv
 
     options:
@@ -287,8 +288,8 @@ realms:
 
     - turbulence_model_constants:
         SDRWallFactor: 0.625
-        tke_amb: 0.000049
-        sdr_amb: 150.0
+        tke_amb: 0.000144
+        sdr_amb: 120.0
 
   post_processing:
   - type: surface
@@ -301,12 +302,12 @@ realms:
     - blade2
 
   restart:
-    restart_data_base_name: rst01/nrelvi-sst.rst
+    restart_data_base_name: rst01/nrelvi-sst-iddes.rst
     restart_frequency: 1440
     restart_start: 0
 
   output:
-    output_data_base_name: out01/nrelvi-sst.e
+    output_data_base_name: out01/nrelvi-sst-iddes.e
     output_frequency: 1440
     output_node_set: no
     output_variables:
@@ -321,6 +322,7 @@ realms:
     - mesh_displacement
     - q_criterion
     - vorticity
+    - iddes_rans_indicator
 
   sideset_writers:
      - name: boundary_output

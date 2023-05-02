@@ -65,28 +65,28 @@ sampling_line.line1.end = 150.0 0.0 0.0
 #.......................................#
 #incflo.gravity        =  0.0  0.0 -9.81  # Gravitational force (3D)
 incflo.density        =  1.246           # Reference density
-incflo.velocity = 15.0 0.0 0.0
+incflo.velocity = 12.0 0.0 0.0
 incflo.use_godunov = 1
 incflo.godunov_type = "weno_z"
 
 transport.viscosity = 1.769e-5
 transport.laminar_prandtl = 0.7
 transport.turbulent_prandtl = 0.3333
-turbulence.model = KOmegaSST
+turbulence.model = KOmegaSSTIDDES
 TKE.source_terms = KwSSTSrc
 SDR.source_terms = SDRSrc
-KOmegaSST_coeffs.tke_amb = 0.000225
-KOmegaSST_coeffs.sdr_amb = 150.0
+KOmegaSST_coeffs.tke_amb = 0.000144
+KOmegaSST_coeffs.sdr_amb = 120.0
 
 incflo.physics = FreeStream
 
 FreeStream.velocity_type = ConstValue
-ConstValue.velocity.value = 15.0 0.0 0.0
+ConstValue.velocity.value = 12.0 0.0 0.0
 
 FreeStream.tke_type = ConstValue
-ConstValue.tke.value = 0.000225
+ConstValue.tke.value = 0.000144
 FreeStream.sdr_type = ConstValue
-ConstValue.sdr.value = 150.0
+ConstValue.sdr.value = 120.0
 
 FreeStream.fields = wall_dist
 FreeStream.wall_dist_type = ConstValue
@@ -116,9 +116,9 @@ geometry.is_periodic    =   0   0   0   # Periodicity x y z (0/1)
 #---------------------------------------#
 xlo.type = "mass_inflow"
 xlo.density = 1.246
-xlo.velocity = 15.0 0.0 0.0
-xlo.tke = 0.000225
-xlo.sdr = 150.0
+xlo.velocity = 12.0 0.0 0.0
+xlo.tke = 0.000144
+xlo.sdr = 120.0
 xhi.type = "pressure_outflow"
 ylo.type = "slip_wall"
 yhi.type = "slip_wall"

@@ -1,9 +1,9 @@
 exawind:
   nalu_wind_inp:
-    - nrelvi-nalu-01-sst.yaml
-  amr_wind_inp: nrelvi-amr-01-sst.inp
+    - nrelvi-nalu-01-sst-iddes.yaml
+  amr_wind_inp: nrelvi-amr-01-sst-iddes.inp
   num_timesteps: 43200
-
+  
   # Variables for overset exchange
   nalu_vars:
     - velocity
@@ -16,3 +16,4 @@ exawind:
     - sdr
   amr_node_vars:
     - p
+    
